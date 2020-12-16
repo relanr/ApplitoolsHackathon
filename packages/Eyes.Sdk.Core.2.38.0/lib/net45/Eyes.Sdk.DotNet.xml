@@ -1,0 +1,1799 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Eyes.Sdk.Core.DotNet</name>
+    </assembly>
+    <members>
+        <member name="T:Applitools.AppEnvironment">
+            <summary>
+            The environment in which the AUT is executing.
+            </summary>
+        </member>
+        <member name="M:Applitools.AppEnvironment.#ctor">
+            <summary>
+            Creates a new <see cref="T:Applitools.AppEnvironment"/> instance.
+            </summary>
+        </member>
+        <member name="M:Applitools.AppEnvironment.#ctor(System.String,System.String,Applitools.Utils.Geometry.RectangleSize)">
+            <summary>
+            Creates a new AppEnvironment instance.
+            </summary>
+        </member>
+        <member name="P:Applitools.AppEnvironment.OS">
+            <summary>
+            Gets/Sets the OS hosting the application_ under test or <c>null</c> if
+            unknown.
+            </summary>
+        </member>
+        <member name="P:Applitools.AppEnvironment.Inferred">
+            <summary>
+            Information inferred from the execution environment or {@code null} if no
+            information could be inferred.
+            </summary>
+        </member>
+        <member name="P:Applitools.AppEnvironment.HostingApp">
+            <summary>
+            Gets/Sets the application_ hosting the application_ under test or <c>null</c>
+            if unknown.
+            </summary>
+        </member>
+        <member name="P:Applitools.AppEnvironment.DisplaySize">
+            <summary>
+            Gets/Sets the display size of the application_ or <c>null</c> if unknown.
+            </summary>
+        </member>
+        <member name="P:Applitools.AppEnvironment.DeviceInfo">
+            <summary>
+            Gets/Sets the device on which the test has run.
+            </summary>
+        </member>
+        <member name="T:Applitools.AppImage">
+            <summary>
+            An image taken from the application under test and matched against the baseline.
+            </summary>
+        </member>
+        <member name="M:Applitools.AppImage.#ctor(System.Boolean)">
+            <summary>
+            Creates a new <see cref="T:Applitools.AppImage"/> instance.
+            </summary>
+        </member>
+        <member name="P:Applitools.AppImage.IsMatch">
+            <summary>
+            Whether or not the image matched the expected baseline image.
+            </summary>
+        </member>
+        <member name="M:Applitools.EyesScreenshot.GetSubScreenshot(Applitools.Utils.Geometry.Region,System.Boolean)">
+            <summary>
+            Returns a part of the screenshot based on the given region.
+            </summary>
+            <param name="region">The region for which we should get the sub screenshot.</param>
+            <param name="throwIfClipped">Throw an EyesException if the region is not fully contained in the screenshot.</param>
+            
+            <returns>A screenshot instance containing the given region.</returns>
+        </member>
+        <member name="M:Applitools.EyesScreenshot.ConvertLocation(System.Drawing.Point,Applitools.Utils.Geometry.CoordinatesTypeEnum,Applitools.Utils.Geometry.CoordinatesTypeEnum)">
+            <summary>
+            Converts a location's coordinates with the <paramref name="from"/> coordinates type
+            to the <paramref name="to"/> coordinates type.
+            </summary>
+            <param name="location">The location which coordinates needs to be converted.</param>
+            <param name="from">The current coordinates type for <paramref name="location"/></param>
+            <param name="to">The target coordinates type for <paramref name="location"/></param>
+            <returns>A new location which is the transformation of <paramref name="location"/> to the <paramref name="to"/> coordinates type.</returns>
+        </member>
+        <member name="M:Applitools.EyesScreenshot.GetLocationInScreenshot(System.Drawing.Point,Applitools.Utils.Geometry.CoordinatesTypeEnum)">
+            <summary>
+            Calculates the location in the screenshot of the location given as parameter.
+            </summary>
+            <param name="location">The location as coordinates inside the current frame.</param>
+            <param name="coordinatesType">The coordinates type of <paramref name="location"/></param>
+            <returns>The corresponding location inside the screenshot, in screenshot as-is coordinates type.</returns>
+            <exception cref="T:Applitools.OutOfBoundsException">If the location is not inside the frame's region in the screenshot.</exception>
+        </member>
+        <member name="M:Applitools.EyesScreenshot.GetIntersectedRegion(Applitools.Utils.Geometry.Region,Applitools.Utils.Geometry.CoordinatesTypeEnum,Applitools.Utils.Geometry.CoordinatesTypeEnum)">
+            <summary>
+            Get the intersection of the given region with the screenshot.
+            </summary>
+            <param name="region">region The region to intersect.</param>
+            <param name="originalCoordinatesType">The coordinates type of <paramref name="region"/>.</param>
+            <param name="resultCoordinatesType">The coordinates type of the resulting region.</param>
+            <returns>The intersected region, in <paramref name="resultCoordinatesType"/> coordinates.</returns>
+        </member>
+        <member name="M:Applitools.EyesScreenshot.GetIntersectedRegion(Applitools.Utils.Geometry.Region,Applitools.Utils.Geometry.CoordinatesTypeEnum)">
+            <summary>
+            Get the intersection of the given region with the screenshot.
+            </summary>
+            <param name="region">region The region to intersect.</param>
+            <param name="coordinatesType">The coordinates type of <paramref name="region"/>.</param>
+            <returns>The intersected region, in <paramref name="coordinatesType"/> coordinates.</returns>
+        </member>
+        <member name="M:Applitools.EyesScreenshot.ConvertRegionLocation(Applitools.Utils.Geometry.Region,Applitools.Utils.Geometry.CoordinatesTypeEnum,Applitools.Utils.Geometry.CoordinatesTypeEnum)">
+            <summary>
+            Converts a region's location coordinates with the <paramref name="from"/> coordinates type to the <paramref name="to"/> coordinates type.
+            </summary>
+            <param name="region">The region which location's coordinates needs to be converted.</param>
+            <param name="from">The current coordinates type for <paramref name="region"/>.</param>
+            <param name="to"> The target coordinates type for <paramref name="region"/>.</param>
+            <returns>A new region which is the transformation of <paramref name="region"/> to the <paramref name="to"/> coordinates type.</returns>
+        </member>
+        <member name="M:Applitools.FullPageCaptureAlgorithm.#ctor(Applitools.Logger,Applitools.Positioning.IRegionPositionCompensation,System.Int32,Applitools.IDebugScreenshotProvider,System.Func{System.Drawing.Bitmap,Applitools.EyesScreenshot},Applitools.Utils.ScaleProviderFactory,Applitools.Utils.Cropping.ICutProvider,System.Int32,Applitools.Capture.IImageProvider,System.Int32,System.Int32,Applitools.Capture.ISizeAdjuster)">
+            <summary>
+            Create a new instance of <see cref="T:Applitools.FullPageCaptureAlgorithm"/>.
+            </summary>
+            <param name="logger">The logger to use.</param>
+            <param name="regionPositionCompensation">A class used to compensate for region offsets in various browsers.</param>
+            <param name="waitBeforeScreenshots">The time to wait before a call for capturing a screenshot. Used mainly for allowing the page to stabilize after a position was set.</param>
+            <param name="debugScreenshotsProvider">An object responsible for storing the intermediate images created in the process, for debugging purposes.</param>
+            <param name="getEyesScreenshot">The function used to create an <see cref="T:Applitools.EyesScreenshot"/> object from the actual screenshot image.</param>
+            <param name="scaleProviderFactory">The scale provider factory.</param>
+            <param name="cutProvider">The cut provider used for custom cropping.</param>
+            <param name="stitchingOverlap">The amount of pixels to overlap when stitching.</param>
+            <param name="imageProvider">The screenshot image provider.</param>
+            <param name="maxHeight">The maximum image height acceptable by the server.</param>
+            <param name="maxArea">The maximum image area (height x width) acceptable by the server.</param>
+            <param name="sizeAdjuster">A size adjuster for the image. Needed for mobile devices that render desktop web pages.</param>
+        </member>
+        <member name="M:Applitools.FullPageCaptureAlgorithm.GetStitchedRegion(Applitools.Utils.Geometry.Region,Applitools.Utils.Geometry.Region,Applitools.Utils.IPositionProvider,Applitools.Utils.IPositionProvider,System.Drawing.Size)">
+            <summary>
+            Encapsulates an algorithm for creating full-page images of a page.
+            </summary>
+            <param name="positionProvider">The position provider used for moving to the actual stitch points.</param>
+            <param name="region">The region to stitch. If <see cref="F:Applitools.Utils.Geometry.Region.Empty"/>, the entire image will be stitched.</param>
+            <param name="fullarea">The wanted area of the resulting image. If unknown, pass in <c>null</c> or <see cref="F:Applitools.Utils.Geometry.Region.Empty"/>.</param>
+            <param name="originProvider">A position provider used for saving the state before 
+            starting the stitching, as well as moving to (0,0). The reason it is separated from 
+            the <c>stitchProvider</c>is that the stitchProvider might have side-effects 
+            (e.g., changing the CSS transform of the page can cause a layout change at the 
+            top of the page), which we can avoid for the first screenshot (since it might be a 
+            full page screenshot anyway).</param>
+            <param name="stitchOffset"></param>
+            <returns>The screenshot as Bitmap.</returns>
+        </member>
+        <member name="M:Applitools.FullPageCaptureAlgorithm.GetFullPageScreenshot(Applitools.Utils.IPositionProvider)">
+            <summary>
+            Encapsulates an algorithm for creating full-page images of a page.
+            </summary>
+            <param name="positionProvider">The position provider used for stitching.</param>
+            <returns>The screenshot as PNG byte array.</returns>
+        </member>
+        <member name="P:Applitools.Configuration.Batch">
+            <summary>
+            Get the batch in which context future tests will run or <c>null</c>
+            if tests are to run standalone.
+            </summary>
+        </member>
+        <member name="M:Applitools.Configuration.SetBatch(Applitools.BatchInfo)">
+            <summary>
+            Sets the batch in which context future tests will run or <c>null</c>
+            if tests are to run standalone.
+            </summary>
+        </member>
+        <member name="P:Applitools.Configuration.BranchName">
+            <summary>
+            Gets the branch in which the baseline for subsequent test runs resides.
+            If the branch does not already exist it will be created under the
+            specified parent branch <see cref="P:Applitools.Configuration.ParentBranchName"/>.
+            Changes made to the baseline or model of a branch do not propagate to other
+            branches.
+            Use <c>null</c> to try getting the branch name from the <code>APPLITOOLS_BRANCH</code> environment variable.
+            If that variable doesn't exists, then the default branch will be used.
+            </summary>
+        </member>
+        <member name="M:Applitools.Configuration.SetBranchName(System.String)">
+            <summary>
+            Sets the branch in which the baseline for subsequent test runs resides.
+            If the branch does not already exist it will be created under the
+            specified parent branch <see cref="P:Applitools.Configuration.ParentBranchName"/>.
+            Changes made to the baseline or model of a branch do not propagate to other
+            branches.
+            Use <c>null</c> to try getting the branch name from the <code>APPLITOOLS_BRANCH</code> environment variable.
+            If that variable doesn't exists, then the default branch will be used.
+            </summary>
+        </member>
+        <member name="P:Applitools.Configuration.ParentBranchName">
+            <summary>
+            Gets the branch under which new branches are created.
+            Use <c>null</c> to try getting the branch name from the <code>APPLITOOLS_PARENT_BRANCH</code> environment variable.
+            If that variable doesn't exists, then the default branch will be used.
+            </summary>
+        </member>
+        <member name="M:Applitools.Configuration.SetParentBranchName(System.String)">
+            <summary>
+            Sets the branch under which new branches are created.
+            Use <c>null</c> to try getting the branch name from the <code>APPLITOOLS_PARENT_BRANCH</code> environment variable.
+            If that variable doesn't exists, then the default branch will be used.
+            </summary>
+        </member>
+        <member name="P:Applitools.Configuration.BaselineBranchName">
+            <summary>
+            Gets the baseline branch under which new branches are created.
+            Use <c>null</c> to try getting the branch name from the <code>APPLITOOLS_BASELINE_BRANCH</code> environment variable.
+            If that variable doesn't exists, then the default branch will be used.
+            </summary>
+        </member>
+        <member name="M:Applitools.Configuration.SetBaselineBranchName(System.String)">
+            <summary>
+            Sets the baseline branch under which new branches are created.
+            Use <c>null</c> to try getting the branch name from the <code>APPLITOOLS_BASELINE_BRANCH</code> environment variable.
+            If that variable doesn't exists, then the default branch will be used.
+            </summary>
+        </member>
+        <member name="P:Applitools.Configuration.AgentId">
+            <summary>
+            Gets this agent's id.
+            </summary>
+        </member>
+        <member name="M:Applitools.Configuration.SetAgentId(System.String)">
+            <summary>
+            Sets this agent's id.
+            </summary>
+        </member>
+        <member name="P:Applitools.Configuration.BaselineEnvName">
+            <summary>
+            If not <c>null</c> determines the name of the environment of the baseline 
+            to compare with.
+            </summary>
+        </member>
+        <member name="M:Applitools.Configuration.SetBaselineEnvName(System.String)">
+            <summary>
+            If not <c>null</c> determines the name of the environment of the baseline 
+            to compare with.
+            </summary>
+        </member>
+        <member name="P:Applitools.Configuration.EnvironmentName">
+            <summary>
+            If not <c>null</c> specifies a name for the environment in which the 
+            application under test is running.
+            </summary>
+        </member>
+        <member name="M:Applitools.Configuration.SetEnvironmentName(System.String)">
+            <summary>
+            If not <c>null</c> specifies a name for the environment in which the 
+            application under test is running.
+            </summary>
+        </member>
+        <member name="P:Applitools.Configuration.SaveDiffs">
+            <summary>
+            Automatically save differences as a baseline.
+            </summary>
+        </member>
+        <member name="M:Applitools.Configuration.SetSaveDiffs(System.Nullable{System.Boolean})">
+            <summary>
+            Automatically save differences as a baseline.
+            </summary>
+        </member>
+        <member name="M:Applitools.Configuration.SetUseDom(System.Boolean)">
+            <summary>
+            Use the page DOM when computing the layout of the page.
+            </summary>
+        </member>
+        <member name="P:Applitools.Configuration.AbortIdleTestTimeout">
+            <summary>
+            Sets and gets optional timeout in seconds. 
+            </summary>
+        </member>
+        <member name="M:Applitools.Configuration.SetAbortIdleTestTimeout(System.Nullable{System.Int32})">
+            <summary>
+            Set optional server timeout in seconds for handling test.
+            </summary>
+            <param name="value">Timeout in seconds.</param>
+            <returns>This configuration object.</returns>
+        </member>
+        <member name="T:Applitools.Cropping.NullCutProvider">
+            <summary>
+            A cut provider that does noting
+            </summary>
+        </member>
+        <member name="M:Applitools.Cropping.NullCutProvider.#ctor">
+            <summary>
+            The only constructor.
+            </summary>
+        </member>
+        <member name="F:Applitools.Cropping.NullCutProvider.Instance">
+            <summary>
+            Static accessor to an instance.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.Cropping.ICutProvider.Cut(System.Drawing.Bitmap)">
+            <summary>
+            Crops the given image.
+            </summary>
+            <param name="image">The image to crop.</param>
+            <returns>A cropped image.</returns>
+        </member>
+        <member name="M:Applitools.Utils.Cropping.ICutProvider.Scale(System.Double)">
+            <summary>
+            Get a scaled version of the cut provider.
+            </summary>
+            <param name="scaleRatio">The ratio by which to scale the current cut parameters.</param>
+            <returns>A new scale cut provider instance.</returns>
+        </member>
+        <member name="T:Applitools.Utils.NotAvailableException">
+            <summary>
+            Indicates that a component does not exist, not accessible or not functional
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.NotAvailableException.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:Applitools.Utils.NotAvailableException.#ctor(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Applitools.Utils.NotAvailableException.#ctor(System.String,System.Exception)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Applitools.Utils.NotAvailableException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Applitools.Utils.OperationFailedException">
+            <summary>
+            The base class of all Applitools' custom exceptions. 
+            Indicates a general unexpected failure to complete an operation.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.OperationFailedException.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:Applitools.Utils.OperationFailedException.#ctor(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Applitools.Utils.OperationFailedException.#ctor(System.String,System.Exception)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Applitools.Utils.OperationFailedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Applitools.Utils.Geometry.GeometryUtils">
+            <summary>
+            Geometry related utilities.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.Geometry.GeometryUtils.ToString(System.Drawing.Rectangle)">
+            <summary>
+            Returns a string representation of the input rectangle.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.Geometry.GeometryUtils.Area(System.Drawing.Size)">
+            <summary>
+            Returns the area of the input size.
+            </summary>
+        </member>
+        <member name="T:Applitools.Utils.Geometry.IRegionsGrid">
+            <summary>
+            A grid of regions.
+            </summary>
+        </member>
+        <member name="P:Applitools.Utils.Geometry.IRegionsGrid.Size">
+            <summary>
+            Gets the size of this grid.
+            </summary>
+        </member>
+        <member name="P:Applitools.Utils.Geometry.IRegionsGrid.Regions">
+            <summary>
+            Gets all regions of this grid.
+            </summary>
+        </member>
+        <member name="P:Applitools.Utils.Geometry.IRegionsGrid.Count">
+            <summary>
+            Gets the number of this grid.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.Geometry.IRegionsGrid.GetRegionAtPoint(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Gets the region at the input point or <c>null</c> if no such region exists.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.Geometry.IRegionsGrid.GetContainedRegions(System.Drawing.Rectangle,System.Collections.Generic.ICollection{Applitools.Utils.Geometry.IRegion},System.Predicate{Applitools.Utils.Geometry.IRegion})">
+            <summary>
+            Adds all regions contained in the input rectangle to the input <c>result</c> list.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.Geometry.IRegionsGrid.GetIntersectingRegions(System.Drawing.Rectangle,System.Predicate{Applitools.Utils.Geometry.IRegion})">
+            <summary>
+            Returns a list of regions intersecting the input rectangle.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.Geometry.IRegionsGrid.IsIntersecting(System.Drawing.Rectangle,System.Predicate{Applitools.Utils.Geometry.IRegion})">
+            <summary>
+            Returns <c>true</c> if the input rectangle intersects with a region of this grid
+            that satisfies the input predicate.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.Geometry.IRegionsGrid.GetContainingRegions(System.Drawing.Rectangle,System.Predicate{Applitools.Utils.Geometry.IRegion})">
+            <summary>
+            Returns all region containing the input rectangle sorted by their area
+            from small to large.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.Geometry.IRegionsGrid.IsContainer(Applitools.Utils.Geometry.IRegion,System.Predicate{Applitools.Utils.Geometry.IRegion})">
+            <summary>
+            Returns <c>true</c> if and only if the input region contains at least one 
+            other region that meets the input predicate.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.Geometry.IRegionsGrid.IsContained(System.Drawing.Rectangle,System.Predicate{Applitools.Utils.Geometry.IRegion})">
+            <summary>
+            Returns <c>true</c> if and only if the input rectangle is contained by a region
+            of this grid.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.Geometry.IRegionsGrid.GetRegion(System.Drawing.Rectangle)">
+            <summary>
+            Returns the region of the input rectangle or <c>null</c> if no such region is 
+            contained in this grid.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.Geometry.IRegionsGrid.HasRegion(Applitools.Utils.Geometry.IRegion)">
+            <summary>
+            Returns <c>true</c> if and only if this grid contains the input region (by reference).
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.Geometry.IRegionsGrid.HasSimilarRegion(System.Drawing.Rectangle,System.Int32,System.Predicate{Applitools.Utils.Geometry.IRegion})">
+            <summary>
+            Returns <c>true</c> if and only if this grid contains a region similar to the 
+            input rectangle.
+            </summary>
+            <param name="rectangle">Rectangle with which similarity is tested</param>
+            <param name="similarity">The max distance between corresponding edges</param>
+            <param name="pred">predicate for filtering regions</param>
+        </member>
+        <member name="M:Applitools.Utils.Geometry.IRegionsGrid.HasSimilarRegion(System.Drawing.Rectangle,System.Double)">
+            <summary>
+            Returns <c>true</c> if and only if this grid contains a region similar to the 
+            input rectangle.
+            </summary>
+            <param name="rectangle">Rectangle with which similarity is tested</param>
+            <param name="similarity">A number in the range [0, 1] that determines the level of
+            similarity (i.e., 1 implies exact match)</param>
+        </member>
+        <member name="M:Applitools.Utils.Geometry.IRegionsGrid.GetRegionsWhere(System.Collections.Generic.ICollection{Applitools.Utils.Geometry.IRegion},System.Predicate{Applitools.Utils.Geometry.IRegion})">
+            <summary>
+            Adds all regions that satisfy the input predicate (if not <c>null</c>) 
+            to the input result list.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.Geometry.IRegionsGrid.GetAdjacentRegions(System.Drawing.Rectangle,System.Int32)">
+            <summary>
+            Returns regions intersecting or adjacent to the input rectangle.
+            </summary>
+            <param name="rectangle">Regions adjacent to this rectangle are returned</param>
+            <param name="adjacency">Adjacency in pixels (0 implies intersection)</param>
+        </member>
+        <member name="M:Applitools.Utils.Geometry.IRegionsGrid.GetUncontainedRegions(System.Drawing.Rectangle,System.Boolean)">
+            <summary>
+            Returns all regions that are not contained by other regions that are contained by the
+            input rectangle.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.Geometry.IRegionsGrid.Copy(System.Drawing.Rectangle)">
+            <summary>
+            Returns a copy of the input area of this grid.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.Geometry.IRegionsGrid.Unify(System.Collections.Generic.ISet{Applitools.Utils.Geometry.IRegion},System.Func{Applitools.Utils.Geometry.IRegion,System.Collections.Generic.IEnumerable{Applitools.Utils.Geometry.IRegion}},System.Int32)">
+            <summary>
+            Unifies the input regions with other regions of this grid without modifying the grid.
+            At completion of each iteration, the regions set is updated to reflect the candidate
+            regions for that iteration.
+            </summary>
+            <param name="regions">Regions to unify</param>
+            <param name="unifyWith">Regions to unify with the given candidate region of the
+            specified set of candidates</param>
+            <param name="iterations">Number of iterations or <c>0</c> to iterate until no 
+            further unifications occur</param>
+            <returns>
+            Regions that were removed from the grid (including new unified regions)
+            </returns>
+        </member>
+        <member name="T:Applitools.Utils.IIdentifiable`1">
+            <summary>
+            An object with a unique identifier.
+            </summary>
+        </member>
+        <member name="P:Applitools.Utils.IIdentifiable`1.Id">
+            <summary>
+            Gets or sets the id of this object.
+            </summary>
+        </member>
+        <member name="T:Applitools.Utils.Images.BasicImageUtils">
+            <summary>
+            Basic image utilities.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.Images.BasicImageUtils.GetStream(System.Drawing.Image,System.Drawing.Imaging.ImageFormat)">
+            <summary>
+            Gets in-memory copy of the input image in the specified format as a stream.
+            </summary>
+        </member>
+        <member name="T:Applitools.Utils.Images.ExternalRegionId">
+            <summary>
+            The identfier of a region in an external system.
+            </summary>
+        </member>
+        <member name="P:Applitools.Utils.Images.ExternalRegionId.Target">
+            <summary>
+            Identifies the external system.
+            </summary>
+        </member>
+        <member name="P:Applitools.Utils.Images.ExternalRegionId.Id">
+            <summary>
+            The id of the region in the <see cref="P:Applitools.Utils.Images.ExternalRegionId.Target"/> system.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.Images.ExternalRegionId.AreEqual(Applitools.Utils.Images.ExternalRegionId,Applitools.Utils.Images.ExternalRegionId)">
+            <summary>
+            Returns <c>true</c> if the input objects are equivalent.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.Images.ExternalRegionId.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Applitools.Utils.Images.ImageDeltaCompressor">
+            <summary>
+            Compresses a target image by saving its differences from a source image.
+            </summary>
+            Compressed image streams have the following format:
+            [0-9] applitools
+            [10] compression format
+            [11-12] source image id length (in bytes)
+            [13-] id (UTF8 encoded)
+            [] format specific encoding.
+        </member>
+        <member name="M:Applitools.Utils.Images.ImageDeltaCompressor.CompressByRawBlocks(System.Drawing.Bitmap,System.Byte[],System.Drawing.Bitmap,System.String,System.IO.Stream,System.Int32)">
+            <summary>
+            Compresses the target image by saving its differences from the source image and 
+            write the result to the input stream.
+            If the source image is <c>null</c> or not of the same size as the target image, the 
+            target image written to the stream in PNG format.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.Images.ImageDeltaCompressor.WriteHeader(System.Byte,System.String,System.IO.Stream)">
+            <summary>
+            Writes a compression header to the input stream.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.Images.ImageDeltaCompressor.GetBlockSize(System.Drawing.Size,System.Int32,System.Int32,System.Int32,System.Int32@,System.Int32@)">
+            <summary>
+            Computes the width and height of the image data contained in the block at the input
+            column and row.
+            </summary>
+            <param name="imageSize">Image size</param>
+            <param name="blockSize">Block size</param>
+            <param name="column">Block column index</param>
+            <param name="row">Block row index</param>
+            <param name="width">Number of block columns containing image data</param>
+            <param name="height">Number of block rows containing image data</param>
+        </member>
+        <member name="M:Applitools.Utils.Images.ImageDeltaCompressor.CompareAndCopyBlockChannelData(System.Byte*,System.Byte*,System.Drawing.Size,System.Int32,System.Int32,System.Int32,System.Int32,System.Byte,System.Byte*,System.Int32@)">
+            <summary>
+            Copies the channel content of the specified block from the target image and 
+            indicates whether it differs from the source image.
+            </summary>
+            <param name="sourceImage">Source image RGB buffer</param>
+            <param name="targetImage">Target image RGB buffer</param>
+            <param name="imageSize">The size of the source and target image</param>
+            <param name="stride">The stride of the image</param>
+            <param name="blockSize">The block size</param>
+            <param name="blockColumn">The block column index</param>
+            <param name="blockRow">The block row index</param>
+            <param name="channel">The channel to compare and copy</param>
+            <param name="copy">The buffer to copy channel data to (at most <c>bs^2</c>)</param>
+            <param name="count">The number of bytes copied</param>
+            <returns>Whether channel data is identical in the two input images</returns>
+        </member>
+        <member name="T:Applitools.Utils.JSBrowserCommands.WithReturn">
+            <summary>
+            The "WithReturn" does NOT(!) refer to whether or not a value is returned. Instead, it 
+            refers to whether or not a "return" command should explicitly be written when 
+            returning a value (some implementations, such as LeanFT, require you to just write 
+            the value to be returned as the last command and explicitly omit the "return" keyword).
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.JSBrowserCommands.WithReturn.GetCurrentScrollPosition(Applitools.Utils.IEyesJsExecutor)">
+            <summary>
+            Get the scroll position of the current frame.
+            </summary>
+            <returns>The scroll position of the current frame.</returns>
+        </member>
+        <member name="M:Applitools.Utils.JSBrowserCommands.WithReturn.ScrollTo(System.Drawing.Point,Applitools.Utils.IEyesJsExecutor)">
+            <summary>
+            Scrolls to the given position.
+            </summary>
+            <param name="scrollPosition">The position to scroll to.</param>
+            <param name="executor">The executor to use.</param>
+            <returns>The actual position the element had scrolled to.</returns>
+        </member>
+        <member name="M:Applitools.Utils.JSBrowserCommands.WithReturn.ScrollToBottomRight(Applitools.Utils.IEyesJsExecutor)">
+            <summary>
+            Scrolls current frame to its bottom right.
+            </summary>
+            <param name="executor">The executor to use.</param>
+        </member>
+        <member name="M:Applitools.Utils.JSBrowserCommands.WithReturn.TranslateTo(System.Drawing.Point,Applitools.Utils.IEyesJsExecutor)">
+            <summary>
+            CSS-translates the document body to the given position, and returns the previous
+            transform value.
+            </summary>
+            <param name="position">The position to translate to.</param>
+            <param name="executor">A JavaScript executor.</param>
+            <returns>The previous transform value</returns>
+        </member>
+        <member name="M:Applitools.Utils.JSBrowserCommands.WithReturn.SetOverflow(System.String,Applitools.Utils.IEyesJsExecutor,System.String)">
+            <summary>
+            Set the overflow of the document's body, and return the previous overflow value.
+            </summary>
+            <param name="overflow">The overflow to set.</param>
+            <param name="jsExecutor"></param>
+            <param name="rootElement">Can be either 'body' or 'documentElement'. Default is 'body'.</param>
+            <returns>The previous overflow value.</returns>
+        </member>
+        <member name="M:Applitools.Utils.JSBrowserCommands.WithReturn.SetTranform(System.String,Applitools.Utils.IEyesJsExecutor)">
+            <summary>
+            Sets a transform on the document's body, and return the previous transform value.
+            </summary>
+            <param name="transform">The transform to set.</param>
+            <param name="executeScript">A reference to a function for executing the script.</param>
+            <returns>The previous transform value.</returns>
+        </member>
+        <member name="M:Applitools.Utils.JSBrowserCommands.WithReturn.GetCurrentTransform(Applitools.Utils.IEyesJsExecutor)">
+            <summary>
+            Gets current document body's transform string.
+            </summary>
+            <returns>The transform string of the document body.</returns>
+        </member>
+        <member name="M:Applitools.Utils.JSBrowserCommands.WithReturn.GetEntirePageSize(Applitools.Utils.IEyesJsExecutor)">
+            <summary>
+            Get the size of the entire page based on the scroll width/height.
+            </summary>
+            <returns>The size of the entire page.</returns>
+        </member>
+        <member name="M:Applitools.Utils.JSBrowserCommands.WithReturn.GetEntireElementSize(Applitools.Utils.IEyesJsExecutor,System.Object)">
+            <summary>
+            Get the size of the entire page based on the scroll width/height.
+            </summary>
+            <returns>The size of the entire page.</returns>
+        </member>
+        <member name="M:Applitools.Utils.JSBrowserCommands.WithReturn.GetCurrentFrameContentEntireSize(Applitools.Utils.IEyesJsExecutor)">
+            <summary>
+            Get the size of the entire page based on the scroll width/height.
+            </summary>
+            <returns>The size of the entire frame content.</returns>
+        </member>
+        <member name="M:Applitools.Utils.JSBrowserCommands.WithReturn.GetUserAgent(System.Func{System.String,System.Object})">
+            <summary>
+            Gets the useragent string from the browser
+            </summary>
+            <returns>useragent string</returns>
+        </member>
+        <member name="M:Applitools.Utils.JSBrowserCommands.WithoutReturn.GetCurrentScrollPosition(Applitools.Utils.IEyesJsExecutor)">
+            <summary>
+            Get the scroll position of the current frame.
+            </summary>
+            <param name="executor">A JavaScript executor.</param>
+            <returns>The scroll position of the current frame.</returns>
+        </member>
+        <member name="M:Applitools.Utils.JSBrowserCommands.WithoutReturn.ScrollTo(System.Drawing.Point,Applitools.Utils.IEyesJsExecutor)">
+            <summary>
+            Scrolls to the given position.
+            </summary>
+            <param name="scrollPosition">The position to scroll to.</param>
+            <param name="executor">A JavaScript executor.</param>
+            <returns>The actual position the element had scrolled to.</returns>
+        </member>
+        <member name="M:Applitools.Utils.JSBrowserCommands.WithoutReturn.ScrollToBottomRight(Applitools.Utils.IEyesJsExecutor)">
+            <summary>
+            Scrolls current frame to its bottom right.
+            </summary>
+            <param name="executor">The executor to use.</param>
+        </member>
+        <member name="M:Applitools.Utils.JSBrowserCommands.WithoutReturn.TranslateTo(System.Drawing.Point,Applitools.Utils.IEyesJsExecutor)">
+            <summary>
+            CSS-translates the document body to the given position, and returns the previous
+            transform value.
+            </summary>
+            <param name="position">The position to translate to.</param>
+            <param name="executor">A JavaScript executor.</param>
+            <returns>The previous transform value</returns>
+        </member>
+        <member name="M:Applitools.Utils.JSBrowserCommands.WithoutReturn.SetOverflow(System.String,Applitools.Utils.IEyesJsExecutor)">
+            <summary>
+            Set the overflow of the document's body, and return the previous overflow value.
+            </summary>
+            <param name="overflow">The overflow to set.</param>
+            <param name="jsExecutor"></param>
+            <returns>The previous overflow value.</returns>
+        </member>
+        <member name="M:Applitools.Utils.JSBrowserCommands.WithoutReturn.HideScrollbars(Applitools.Utils.IEyesJsExecutor)">
+            <summary>
+            Hides the scrollbars.
+            </summary>
+            <param name="jsExecutor"></param>
+            <returns>The original overflow value of the page.</returns>
+        </member>
+        <member name="M:Applitools.Utils.JSBrowserCommands.WithoutReturn.SetTranform(System.String,Applitools.Utils.IEyesJsExecutor)">
+            <summary>
+            Sets a transform on the document's body, and return the previous transform value.
+            </summary>
+            <param name="transform">The transform to set.</param>
+            <param name="executor">A JavaScript executor.</param>
+            <returns>The previous transform value.</returns>
+        </member>
+        <member name="M:Applitools.Utils.JSBrowserCommands.WithoutReturn.GetCurrentTransform(Applitools.Utils.IEyesJsExecutor)">
+            <summary>
+            Gets current document body's transform string.
+            </summary>
+            <returns>The transform string of the document body.</returns>
+        </member>
+        <member name="M:Applitools.Utils.JSBrowserCommands.WithoutReturn.GetEntirePageSize(Applitools.Utils.IEyesJsExecutor)">
+            <summary>
+            Get the size of the entire page based on the scroll width/height.
+            </summary>
+            <returns>The size of the entire page.</returns>
+        </member>
+        <member name="M:Applitools.Utils.JSBrowserCommands.WithoutReturn.GetCurrentFrameContentEntireSize(Applitools.Utils.IEyesJsExecutor)">
+            <summary>
+            Get the size of the entire page based on the scroll width/height.
+            </summary>
+            <returns>The size of the entire frame content.</returns>
+        </member>
+        <member name="M:Applitools.Utils.JSBrowserCommands.WithoutReturn.GetUserAgent(System.Func{System.String,System.Object})">
+            <summary>
+            Gets the useragent string from the browser
+            </summary>
+            <returns>useragent string</returns>
+        </member>
+        <member name="M:Applitools.Utils.JSBrowserCommands.GetCurrentScrollPosition_(Applitools.Utils.IEyesJsExecutor,System.String)">
+            <summary>
+            Get the scroll position of the current frame.
+            </summary>
+            <param name="executor">A JavaScript executor.</param>
+            <param name="returnStr">The return string which the script should use.</param>
+            <returns>The scroll position of the current frame.</returns>
+        </member>
+        <member name="M:Applitools.Utils.JSBrowserCommands.ScrollTo_(System.Drawing.Point,Applitools.Utils.IEyesJsExecutor,System.String)">
+            <summary>
+            Scrolls to the given position.
+            </summary>
+            <param name="scrollPosition">The position to scroll to.</param>
+            <param name="executor">A JavaScript executor.</param>
+            <param name="returnStr">The return string which the script should use.</param>
+            <returns>The actual position the element had scrolled to.</returns>
+        </member>
+        <member name="M:Applitools.Utils.JSBrowserCommands.TranslateTo_(System.Drawing.Point,Applitools.Utils.IEyesJsExecutor,System.String)">
+            <summary>
+            CSS-translates the document body to the given position, and returns the previous
+            transform value.
+            </summary>
+            <param name="position">The position to translate to.</param>
+            <param name="executor">A JavaScript executor.</param>
+            <param name="returnStr">The return string which the script should use.</param>
+            <returns>The previous transform value</returns>
+        </member>
+        <member name="M:Applitools.Utils.JSBrowserCommands.SetOverflow_(System.String,Applitools.Utils.IEyesJsExecutor,System.String,System.String)">
+            <summary>
+            Set the overflow of the document's body, and return the previous overflow value.
+            </summary>
+            <param name="overflow">The overflow to set.</param>
+            <param name="executor">A JavaScript executor.</param>
+            <param name="returnStr">The return string which the script should use.</param>
+            <param name="rootElement">Can be either 'body' or 'documentElement'. Default is 'body'.</param>
+            <returns>The previous overflow value.</returns>
+        </member>
+        <member name="M:Applitools.Utils.JSBrowserCommands.HideScrollbars_(Applitools.Utils.IEyesJsExecutor,System.String,System.String)">
+            <summary>
+            Hides the scrollbars of the page, and returns the original overflow value.
+            </summary>
+            <param name="executor">A JavaScript executor.</param>
+            <param name="returnStr">The return string which the script should use.</param>
+            <param name="rootElement">Can be either 'body' or 'documentElement'. Default is 'body'.</param>
+            <returns>The original overflow value of the page.</returns>
+        </member>
+        <member name="M:Applitools.Utils.JSBrowserCommands.SetTranform_(System.String,Applitools.Utils.IEyesJsExecutor,System.String)">
+            <summary>
+            Sets a transform on the document's body, and return the previous transform value.
+            </summary>
+            <param name="transform">The transform to set.</param>
+            <param name="executor">A JavaScript executor.</param>
+            <param name="returnStr">The return string which the script should use.</param>
+            <returns>The previous transform value.</returns>
+        </member>
+        <member name="M:Applitools.Utils.JSBrowserCommands.GetCurrentTransform_(Applitools.Utils.IEyesJsExecutor,System.String)">
+            <summary>
+            Gets current document body's transform string.
+            </summary>
+            <param name="executor">A JavaScript executor.</param>
+            <param name="returnStr">The return string which the script should use.</param>
+            <returns>The transform string of the document body.</returns>
+        </member>
+        <member name="M:Applitools.Utils.JSBrowserCommands.GetEntirePageSize_(Applitools.Utils.IEyesJsExecutor,System.String)">
+            <summary>
+            Get the size of the entire page based on the scroll width/height.
+            </summary>
+            <param name="executeScript">A reference to a function for executing the script.</param>
+            <param name="returnStr">The return string which the script should use.</param>
+            <returns>The size of the entire page.</returns>
+        </member>
+        <member name="M:Applitools.Utils.JSBrowserCommands.GetEntireElementSize_(Applitools.Utils.IEyesJsExecutor,System.String,System.Object)">
+            <summary>
+            Get the size of the entire element based on the scroll width/height.
+            </summary>
+            <param name="executeScript">A reference to a function for executing the script.</param>
+            <param name="returnStr">The return string which the script should use.</param>
+            <param name="element">The element for which to take the size.</param>
+            <returns>The size of the entire page.</returns>
+        </member>
+        <member name="M:Applitools.Utils.JSBrowserCommands.GetCurrentFrameContentEntireSize_(Applitools.Utils.IEyesJsExecutor,System.String)">
+            <summary>
+            Get the size of the entire page based on the scroll width/height.
+            </summary>
+            <param name="executeScript">A reference to a function for executing the script.</param>
+            <param name="returnStr">The return string which the script should use.</param>
+            <returns>The size of the entire page.</returns>
+        </member>
+        <member name="M:Applitools.Utils.JSBrowserCommands.GetUserAgent_(System.Func{System.String,System.Object},System.String)">
+            <summary>
+            Gets the useragent string from the browser
+            </summary>
+            <param name="executeScript">A reference to a function for executing the script.</param>
+            <param name="returnStr">The return string which the script should use.</param>
+            <returns>useragent string</returns>
+        </member>
+        <member name="M:Applitools.Utils.JSBrowserCommands.GetDevicePixelRatio_(Applitools.Utils.IEyesJsExecutor,System.String)">
+            <summary>
+            Gets the device pixel ratio of the device running the hosting app.
+            </summary>
+            <returns>The Device pixel ratio.</returns>
+        </member>
+        <member name="T:Applitools.Utils.HttpRequestCompletedEventArgs">
+            <summary>
+            Http request completion event arguments.
+            </summary>
+        </member>
+        <member name="P:Applitools.Utils.HttpRequestCompletedEventArgs.Elapsed">
+            <summary>
+            The time is took the request to complete.
+            </summary>
+        </member>
+        <member name="P:Applitools.Utils.HttpRequestCompletedEventArgs.Request">
+            <summary>
+            The HTTP request.
+            </summary>
+        </member>
+        <member name="P:Applitools.Utils.HttpRequestCompletedEventArgs.Response">
+            <summary>
+            The HTTP response.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.HttpRequestCompletedEventArgs.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Applitools.Utils.HttpRequestFailedEventArgs">
+            <summary>
+            Http request failed (with exception) event arguments.
+            </summary>
+        </member>
+        <member name="P:Applitools.Utils.HttpRequestFailedEventArgs.Elapsed">
+            <summary>
+            The time that elapsed until the failure was reported.
+            </summary>
+        </member>
+        <member name="P:Applitools.Utils.HttpRequestFailedEventArgs.Request">
+            <summary>
+            The HTTP request.
+            </summary>
+        </member>
+        <member name="P:Applitools.Utils.HttpRequestFailedEventArgs.Exception">
+            <summary>
+            The exception thrown.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.HttpRequestFailedEventArgs.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Applitools.Utils.HttpRestClient">
+            <summary>
+            An HTTP rest client.
+            </summary>
+            <remarks>Make sure to <c>Dispose</c> or <c>Close</c> responses!</remarks>
+        </member>
+        <member name="M:Applitools.Utils.HttpRestClient.#ctor(System.Uri,System.String,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Creates a new <see cref="T:Applitools.Utils.HttpRestClient"/> instance.
+            </summary>
+            <param name="jsonSerializer">The JSON serializer to use to <c>null</c> 
+            to use the default serializer.</param>
+            <param name="agentId">The full agent ID of the SDK.</param>
+            <param name="serverUrl">Server's base URL</param>
+        </member>
+        <member name="E:Applitools.Utils.HttpRestClient.ConfigureRequest">
+            <summary>
+            Fired before each request is sent.
+            </summary>
+        </member>
+        <member name="E:Applitools.Utils.HttpRestClient.RequestCompleted">
+            <summary>
+            Fired after a request completes and a response is available.
+            </summary>
+        </member>
+        <member name="E:Applitools.Utils.HttpRestClient.RequestFailed">
+            <summary>
+            Fired after a request has failed (due to an exception).
+            </summary>
+        </member>
+        <member name="P:Applitools.Utils.HttpRestClient.ServerUrl">
+            <summary>
+            Gets or sets the server's base url.
+            </summary>
+        </member>
+        <member name="P:Applitools.Utils.HttpRestClient.Timeout">
+            <summary>
+            Gets or sets the HTTP request timeout.
+            </summary>
+        </member>
+        <member name="P:Applitools.Utils.HttpRestClient.Retry">
+            <summary>
+            Determines whether the input request should be retied based on its response.
+            </summary>
+        </member>
+        <member name="P:Applitools.Utils.HttpRestClient.ConnectionLimit">
+            <summary>
+            Determines the maximum number of concurrent connections (default is 10).
+            Excess connections will block.
+            </summary>
+        </member>
+        <member name="P:Applitools.Utils.HttpRestClient.FormatRequestUri">
+            <summary>
+            Formats HTTP request URIs.
+            </summary>
+            <returns>A new URI to use in the request</returns>
+        </member>
+        <member name="P:Applitools.Utils.HttpRestClient.AcceptLongRunningTasks">
+            <summary>
+            Whether or not to accept long-running async tasks.
+            </summary>
+        </member>
+        <member name="P:Applitools.Utils.HttpRestClient.Proxy">
+            <summary>
+            Gets or sets the proxy used by this client or <c>null</c> to obtain the system 
+            proxy.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.HttpRestClient.SetBasicAuth(System.String,System.String)">
+            <summary>
+            Sets basic authentication credentials.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.HttpRestClient.Post(System.String,System.String)">
+            <summary>
+            Sends a POST request to the input path under the base url.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.HttpRestClient.PostJson``1(System.String,``0,System.String)">
+            <summary>
+            Sends a POST request to the input path under the base url with a JSON body.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.HttpRestClient.Post(System.String,System.IO.MemoryStream,System.String,System.String,System.String)">
+            <summary>
+            Sends a POST request of the input body to the input path under the base url.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.HttpRestClient.Put(System.String,System.String)">
+            <summary>
+            Sends a PUT request to the input path under the base url.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.HttpRestClient.PutJson``1(System.String,``0,System.String)">
+            <summary>
+            Sends a PUT request to the input path under the base url with a JSON body.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.HttpRestClient.Put(System.String,System.IO.MemoryStream,System.String,System.String,System.String)">
+            <summary>
+            Sends a PUT request of the input body to the input path under the base url.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.HttpRestClient.Delete(System.String,System.String)">
+            <summary>
+            Sends a DELETE request to the input path under the base url.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.HttpRestClient.DeleteJson``1(System.String,``0,System.String)">
+            <summary>
+            Sends a DELETE request to the input path under the base url with a Json body.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.HttpRestClient.Get(System.String,System.String)">
+            <summary>
+            Sends a GET request to the input path under the base url.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.HttpRestClient.GetJson(System.String)">
+            <summary>
+            Sends a GET request accepting a Json response to the input path under the base url.
+            </summary>
+        </member>
+        <member name="T:Applitools.Utils.NetworkUtils">
+            <summary>
+            Network related utilities.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.NetworkUtils.BasicAuthentication(System.Net.HttpWebRequest,System.String,System.String)">
+            <summary>
+            Adds a basic authentication <c>Authorization</c> header to the specified web request.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.NetworkUtils.UrlEncode(System.String)">
+            <summary>
+            URL encodes value while working around issues with <see cref="M:System.Web.HttpUtility.UrlEncode(System.String)"/>.
+            </summary>
+            <param name="value">The string to encode.</param>
+            <returns>The encoded string.</returns>
+        </member>
+        <member name="M:Applitools.Utils.NetworkUtils.AddUriQueryArg(System.Uri,System.String,System.String)">
+            <summary>
+            Encodes and adds the input query argument to the input URI and returns the resulting 
+            URI.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.NetworkUtils.DeserializeBody``1(System.Net.HttpWebResponse,System.Boolean)">
+            <summary>
+            Deserializes the body of the response if its status code is <c>200 OK</c>.
+            </summary>
+            <param name="dispose">Whether or not to dispose of the response</param>
+            <param name="response">Response which body to deserialize</param>
+        </member>
+        <member name="M:Applitools.Utils.NetworkUtils.DeserializeBody``1(System.Net.HttpWebResponse,System.Boolean,Newtonsoft.Json.JsonSerializer,System.Net.HttpStatusCode[])">
+            <summary>
+            Deserializes the body of the response if its status code is <c>200 OK</c> or any 
+            of the specified status codes.
+            </summary>
+            <param name="dispose">Whether or not to dispose of the response</param>
+            <param name="response">Response which body to deserialize</param>
+            <param name="serializer">Json serializer to use</param>
+            <param name="validStatuses">Valid status codes</param>
+        </member>
+        <member name="M:Applitools.Utils.NetworkUtils.DeserializeBody``1(System.Net.HttpWebResponse,System.Boolean,Newtonsoft.Json.JsonSerializer,System.Int32[])">
+            <summary>
+            Deserializes the body of the response if its status code is <c>200 OK</c> or any 
+            of the specified status codes.
+            </summary>
+            <param name="dispose">Whether or not to dispose of the response</param>
+            <param name="response">Response which body to deserialize</param>
+            <param name="serializer">Json serializer to use</param>
+            <param name="validStatuses">Valid status codes</param>
+        </member>
+        <member name="T:Applitools.Utils.SetScaleProviderHandler">
+            <summary>
+            Sets the scale provider used for scaling images before validation.
+            </summary>
+            <param name="scaleProvider">The scale provider to use</param>
+        </member>
+        <member name="T:Applitools.Utils.ScaleProviderFactory">
+            <summary>
+            Abstraction for instantiating scale providers.
+            </summary>
+        </member>
+        <member name="T:Applitools.Utils.CssTranslatePositionProvider">
+            <summary>
+            CSS Translate Transform Position Provider - will move the element graphics without recomputing the page layout.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.CssTranslatePositionProvider.#ctor(Applitools.Logger,Applitools.Utils.IEyesJsExecutor)">
+            <summary>
+            Creates a new instance.
+            </summary>
+            <param name="logger">The logger.</param>
+            <param name="executor">The JavaScript executor to use.</param>
+        </member>
+        <member name="M:Applitools.Utils.CssTranslatePositionProvider.GetCurrentPosition">
+            <returns>The current position</returns>
+        </member>
+        <member name="M:Applitools.Utils.CssTranslatePositionProvider.SetPosition(System.Drawing.Point)">
+            <summary>
+            Sets the current position.
+            </summary>
+            <param name="pos">The position to set.</param>
+            <returns>The actual position the element had scrolled to.</returns>
+        </member>
+        <member name="M:Applitools.Utils.CssTranslatePositionProvider.GetEntireSize">
+            <returns>The entire size of the current context.</returns>
+        </member>
+        <member name="M:Applitools.Utils.CssTranslatePositionProvider.GetState">
+            <summary>
+            Get the current state of the position provider. This is different from 
+            <c>GetCurrentPosition</c> in that the state of the position provider includes
+            also the CSS "transform" style in addition to the coordinates.
+            </summary>
+            <returns>The current state of the position provider, which can later be restored by 
+            passing it as a parameter to <c>RestoreState</c></returns>
+        </member>
+        <member name="M:Applitools.Utils.CssTranslatePositionProvider.RestoreState(Applitools.Utils.PositionMemento)">
+            <summary>
+            Restores the state of the position provider to the state provided as a parameter.
+            </summary>
+            <param name="state">The state to restore to.</param>
+        </member>
+        <member name="T:Applitools.Utils.IPositionProvider">
+            <summary>
+            Position provider API.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.IPositionProvider.GetCurrentPosition">
+            <returns>The current position</returns>
+        </member>
+        <member name="M:Applitools.Utils.IPositionProvider.SetPosition(System.Drawing.Point)">
+            <summary>
+            Sets the current position.
+            </summary>
+            <param name="pos">The position to set.</param>
+            <returns>The actual position the element had scrolled to.</returns>
+        </member>
+        <member name="M:Applitools.Utils.IPositionProvider.GetEntireSize">
+            <returns>The entire size of the current context.</returns>
+        </member>
+        <member name="M:Applitools.Utils.IPositionProvider.GetState">
+            <summary>
+            Get the current state of the position provider. This is different from 
+            <c>GetCurrentPosition</c> in that the state of the position provider might include 
+            other data than just the coordinates. For example a CSS translation based position 
+            provider (in WebDriver based SDKs), might save the entire "transform" style value as 
+            its state.
+            </summary>
+            <returns>The current state of the position provider, which can later be restored by 
+            passing it as a parameter to <c>RestoreState</c></returns>
+        </member>
+        <member name="M:Applitools.Utils.IPositionProvider.RestoreState(Applitools.Utils.PositionMemento)">
+            <summary>
+            Restores the state of the position provider to the state provided as a parameter.
+            </summary>
+            <param name="state">The state to restore to.</param>
+        </member>
+        <member name="T:Applitools.Utils.TracerMessageFormatter">
+            <summary>
+            Formats method and property invocation messages.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.TracerMessageFormatter.#ctor(System.String,System.String)">
+            <summary>
+            Creates a new <see cref="T:Applitools.Utils.TracerMessageFormatter"/> instance.
+            </summary>
+            <param name="prefix">Prefixes the formatted message</param>
+            <param name="suffix">Suffixes the formatted message</param>
+        </member>
+        <member name="M:Applitools.Utils.TracerMessageFormatter.op_Implicit(Applitools.Utils.TracerMessageFormatter)~System.String">
+            <summary>
+            Converts a <see cref="T:Applitools.Utils.TracerMessageFormatter"/> object to its underlying 
+            trace string.
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.TracerMessageFormatter.WithArgs(System.Object[])">
+            <summary>
+            Format the input argument list
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.TracerMessageFormatter.WithArg(System.Collections.IEnumerable)">
+            <summary>
+            Format the input argument
+            </summary>
+        </member>
+        <member name="M:Applitools.Utils.TracerMessageFormatter.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Applitools.Utils.ValidatedNotNullAttribute">
+            <summary>
+            Identifies methods that validate that their arguments are not null (needed for 
+            static analysis).
+            </summary>
+        </member>
+        <member name="M:Applitools.Exceptions.DiffsFoundException.#ctor(Applitools.TestResults,System.String,System.String,System.String)">
+            <summary>
+            Creates a new <see cref="T:Applitools.Exceptions.DiffsFoundException"/> instance.
+            </summary>
+        </member>
+        <member name="T:Applitools.NewTestException">
+            <summary>
+            Indicates that a new test (i.e., a test for which no baseline exists) ended.
+            </summary>
+        </member>
+        <member name="M:Applitools.NewTestException.#ctor">
+            <summary>
+            Creates an <see cref="T:Applitools.NewTestException"/> instance.
+            </summary>
+        </member>
+        <member name="M:Applitools.NewTestException.#ctor(System.String)">
+            <summary>
+            Creates an <see cref="T:Applitools.NewTestException"/> instance.
+            </summary>
+        </member>
+        <member name="M:Applitools.NewTestException.#ctor(Applitools.TestResults,System.String)">
+            <summary>
+            Creates an <see cref="T:Applitools.NewTestException"/> instance.
+            </summary>
+        </member>
+        <member name="M:Applitools.NewTestException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Creates an <see cref="T:Applitools.NewTestException"/> instance.
+            </summary>
+        </member>
+        <member name="T:Applitools.GetTextHandler">
+            <summary>
+            Extracts text in the specified language from the input image region.
+            </summary>
+        </member>
+        <member name="T:Applitools.CreateImageHandler">
+            <summary>
+            Creates an image of the specified region of the application window and returns its id.
+            </summary>
+            <param name="region">Image region or an empty rectangle to create an image of 
+            the entire window.</param>
+        </member>
+        <member name="T:Applitools.EyesBase">
+            <summary>
+            Applitools Eyes base class.
+            </summary>
+        </member>
+        <member name="M:Applitools.EyesBase.#ctor(System.Uri)">
+            <summary>
+            Creates a new <see cref="T:Applitools.EyesBase"/> instance that interacts with 
+            the Eyes Server at the specified url.
+            </summary>
+            <param name="serverUrl">The Eyes server URL.</param>
+        </member>
+        <member name="M:Applitools.EyesBase.#ctor">
+            <summary>
+            Creates a new <see cref="T:Applitools.EyesBase"/> instance that interacts with the Eyes cloud
+            service.
+            </summary>
+        </member>
+        <member name="P:Applitools.EyesBase.IsDisabled">
+            <summary>
+            Whether or not the Eyes api is disabled. 
+            If <c>true</c>, all interactions with this API are silently ignored.
+            </summary>
+        </member>
+        <member name="P:Applitools.EyesBase.UserInputs">
+            <summary>
+            User inputs collected between <see cref="M:Applitools.EyesBase.CheckWindowBase(System.Nullable{System.Drawing.Rectangle},Applitools.ICheckSettings,System.String)"/> (or one of its overloads) invocations.
+            </summary>
+        </member>
+        <member name="P:Applitools.EyesBase.InteropMatchLevel">
+            <summary>
+            Gets or sets <see cref="T:Applitools.MatchLevel"/> by its numeric value (to simplify interop)
+            </summary>
+        </member>
+        <member name="P:Applitools.EyesBase.InteropFailureReports">
+            <summary>
+            Gets or sets <see cref="T:Applitools.FailureReports"/> by its numeric value (to simplify interop)
+            </summary>
+        </member>
+        <member name="P:Applitools.EyesBase.InteropMatchTimeout">
+            <summary>
+            Gets or sets <see cref="P:Applitools.Configuration.MatchTimeout"/> in milliseconds (to simplify interop)
+            </summary>
+        </member>
+        <member name="P:Applitools.EyesBase.Logger">
+            <summary>
+            Message logger.
+            </summary>
+        </member>
+        <member name="P:Applitools.EyesBase.BaseAgentId">
+            <summary>
+            The agent id.
+            </summary>
+        </member>
+        <member name="P:Applitools.EyesBase.FullAgentId">
+            <summary>
+            Gets the full agent id including both <see cref="P:Applitools.EyesBaseConfig.AgentId"/> and 
+            <see cref="P:Applitools.EyesBase.BaseAgentId"/>.
+            </summary>
+        </member>
+        <member name="P:Applitools.EyesBase.Proxy">
+            <summary>
+            Gets or sets the proxy used to access the Eyes server or <c>null</c> to use the system 
+            proxy.
+            </summary>
+        </member>
+        <member name="P:Applitools.EyesBase.ScaleProvider">
+            <summary>
+            Sets the current scale provider (assuming <see cref="F:Applitools.EyesBase.setScaleProvider_"/> is not 
+            in read-only mode).
+            </summary>
+        </member>
+        <member name="P:Applitools.EyesBase.ScaleRatio">
+            <summary>
+            Get/Set the ratio to use for scaling images before validating them. Setting the value 
+            to 0 (or lower) will cause the Eyes SDK to use the default values.
+            </summary>
+        </member>
+        <member name="M:Applitools.EyesBase.SetLogHandler(Applitools.ILogHandler)">
+            <summary>
+            Sets a handler of log messages generated by this API.
+            </summary>
+            <param name="logHandler">Handles log messages generated by this API.</param>
+        </member>
+        <member name="M:Applitools.EyesBase.Close">
+            <summary>
+            Ends the test and returns its results.
+            </summary>
+        </member>
+        <member name="M:Applitools.EyesBase.Close(System.Boolean)">
+            <summary>
+            Ends the test.
+            </summary>
+            <param name="throwEx">
+            Whether to throw an exception if the test is new or mismatches were found</param>
+            <exception cref="T:Applitools.TestFailedException">
+            Thrown if mismatches were found.</exception>
+            <exception cref="T:Applitools.NewTestException">A new test ended</exception>
+            <returns>The test results.</returns>
+        </member>
+        <member name="M:Applitools.EyesBase.AbortIfNotClosed">
+            <summary>
+            If a test is running, aborts it. Otherwise, does nothing.
+            </summary>
+        </member>
+        <member name="M:Applitools.EyesBase.Abort">
+            <summary>
+            If a test is running, aborts it. Otherwise, does nothing.
+            </summary>
+        </member>
+        <member name="M:Applitools.EyesBase.SetAppEnvironment(System.String,System.String)">
+            <summary>
+            Sets the OS (e.g., Windows) and application (e.g., Chrome) 
+            that host the application under test.
+            </summary>
+            <param name="hostOS">The name of the OS hosting the application under test or 
+            <c>null</c> to auto-detect.</param>
+            <param name="hostApp">The name of the application hosting the application under
+            test or <c>null</c> to auto-detect.</param>
+        </member>
+        <member name="M:Applitools.EyesBase.Log(System.String)">
+            <summary>
+            Writes the input message to this agent's log.
+            </summary>
+        </member>
+        <member name="M:Applitools.EyesBase.Throw(System.String)">
+            <summary>
+            Throws an <see cref="T:Applitools.EyesException"/> with the input message.
+            </summary>
+        </member>
+        <member name="M:Applitools.EyesBase.InRegionBase(System.Func{System.Drawing.Rectangle})">
+            <summary>
+            Specifies a region of the current application window.
+            </summary>
+            <param name="getRegion">Gets the region bounds (invoked after viewport size is set)
+            </param>
+        </member>
+        <member name="M:Applitools.EyesBase.CheckWindowBase(System.Nullable{System.Drawing.Rectangle},System.String,System.Int32,System.String)">
+            <summary>
+            Takes a snapshot of the application under test and matches it with the expected output.
+            </summary>
+            <param name="region">The rectangle to be captured in the screenshot. Pass <c>Rectangle.Empty</c> or <c>null</c> for the entire screenshot.</param>
+            <param name="tag">An optional tag to be associated with the snapshot.</param>
+            <param name="retryTimeout">The amount of time to retry matching in milliseconds or a negative value to use the default retry timeout.</param>
+            <param name="source">The tested source (URL or App Name).</param>
+            <exception cref="T:Applitools.TestFailedException">
+            Thrown if a mismatch is detected and immediate failure reports are enabled.
+            </exception>
+        </member>
+        <member name="M:Applitools.EyesBase.CheckWindowBase(System.Nullable{System.Drawing.Rectangle},Applitools.ICheckSettings,System.String)">
+            <summary>
+            Takes a snapshot of the application under test and matches it with the expected output.
+            </summary>
+            <param name="region">The rectangle to be captured in the screenshot. Pass <c>Rectangle.Empty</c> or <c>null</c>  for the entire screenshot.</param>
+            <param name="checkSettings">The settings to use.</param>
+            <param name="source">The tested source (URL or App Name).</param>
+            
+            <returns></returns>
+        </member>
+        <member name="M:Applitools.EyesBase.CheckWindowBase(System.Nullable{System.Drawing.Rectangle},Applitools.Fluent.ICheckSettingsInternal,System.String)">
+            <summary>
+            Takes a snapshot of the application under test and matches it with the expected output.
+            </summary>
+            <param name="region">The rectangle to be captured in the screenshot. Pass <c>Rectangle.Empty</c> or <c>null</c>  for the entire screenshot.</param>
+            <param name="checkSettingsInternal">The settings to use.</param>
+            <param name="source">The tested source (URL or App Name).</param>
+            
+            <exception cref="T:Applitools.TestFailedException">
+            Thrown if a mismatch is detected and immediate failure reports are enabled.
+            </exception>
+        </member>
+        <member name="M:Applitools.EyesBase.OpenBase(System.String,System.String,System.Drawing.Size)">
+            <summary>
+            Starts a test.
+            </summary>
+            <param name="appName">The name of the application under test.</param>
+            <param name="testName">The test name.</param>
+            <param name="viewportSize">The required application's client area viewport size
+            or <c>Size.Empty</c> to allow any viewport size.</param>
+        </member>
+        <member name="M:Applitools.EyesBase.OpenBase(System.String,System.String,Applitools.Utils.Geometry.RectangleSize)">
+            <summary>
+            Starts a test.
+            </summary>
+            <param name="appName">The name of the application under test.</param>
+            <param name="testName">The test name.</param>
+            <param name="viewportSize">The required application's client area viewport size
+            or <c>null</c> to allow any viewport size.</param>
+        </member>
+        <member name="M:Applitools.EyesBase.OpenBase">
+            <summary>
+            Starts a test using the current <c>Configuration</c> data.
+            </summary>
+        </member>
+        <member name="M:Applitools.EyesBase.GetScreenshot(System.Nullable{System.Drawing.Rectangle},Applitools.Fluent.ICheckSettingsInternal)">
+            <summary>
+            Returns a screenshot to validate or <c>null</c> to indicate that a screenshot URL is to be provided.
+            </summary>
+            <param name="region">The rectangle to be captured in the screenshot. Pass <c>Rectangle.Empty</c> or <c>null</c> for the entire screenshot.</param>
+            <param name="checkSettingsInternal"></param>
+        </member>
+        <member name="M:Applitools.EyesBase.GetScreenshotUrl">
+            <summary>
+            Returns a URL from which the application screenshot can be obtained. 
+            Invoked only if a previous call to <see cref="M:Applitools.EyesBase.GetScreenshot(System.Nullable{System.Drawing.Rectangle},Applitools.Fluent.ICheckSettingsInternal,Applitools.ImageMatchSettings)"/> returned <c>null</c>.
+            </summary>
+        </member>
+        <member name="M:Applitools.EyesBase.GetAppOutput_(System.Nullable{System.Drawing.Rectangle},Applitools.Fluent.ICheckSettingsInternal,Applitools.ImageMatchSettings)">
+            <summary>
+            Returns the current application output.
+            </summary>
+            <param name="region">The region of the screenshot which will be set in the application output.</param>
+            <param name="checkSettingsInternal">The check settings object of the current test.</param>
+            <param name="imageMatchSettings">The image match settings object in which to collect the coded-regions.</param>
+        </member>
+        <member name="P:Applitools.EyesBaseConfig.ApiKey">
+            <summary>
+            Sets the API key of your applitools Eyes account.
+            If <c>null</c>, then the API key will be read from the <code>APPLITOOLS_API_KEY</code> environment variable.
+            </summary>
+            <param name="value">The API key.</param>
+        </member>
+        <member name="P:Applitools.EyesBaseConfig.ServerUrl">
+            <summary>
+            Gets or sets the Eyes server URL.
+            </summary>
+        </member>
+        <member name="P:Applitools.EyesBaseConfig.AgentId">
+            <summary>
+            Gets or sets this agent's id.
+            </summary>
+        </member>
+        <member name="P:Applitools.EyesBaseConfig.BranchName">
+            <summary>
+            Gets or sets the branch in which the baseline for subsequent test runs resides.
+            If the branch does not already exist it will be created under the
+            specified parent branch <see cref="P:Applitools.EyesBaseConfig.ParentBranchName"/>.
+            Changes made to the baseline or model of a branch do not propagate to other
+            branches.
+            Use <c>null</c> to try getting the branch name from the <code>APPLITOOLS_BRANCH</code> environment variable.
+            If that variable doesn't exists, then the default branch will be used.
+            </summary>
+        </member>
+        <member name="P:Applitools.EyesBaseConfig.BaselineBranchName">
+            <summary>
+            Gets or sets the baseline branch under which new branches are created.
+            Use <c>null</c> to try getting the branch name from the <code>APPLITOOLS_BASELINE_BRANCH</code> environment variable.
+            If that variable doesn't exists, then the default branch will be used.
+            </summary>
+        </member>
+        <member name="P:Applitools.EyesBaseConfig.ParentBranchName">
+            <summary>
+            Gets or sets the branch under which new branches are created.
+            Use <c>null</c> to try getting the branch name from the <code>APPLITOOLS_PARENT_BRANCH</code> environment variable.
+            If that variable doesn't exists, then the default branch will be used.
+            </summary>
+        </member>
+        <member name="P:Applitools.EyesBaseConfig.EnvironmentName">
+            <summary>
+            If not <c>null</c> specifies a name for the environment in which the 
+            application under test is running.
+            </summary>
+        </member>
+        <member name="P:Applitools.EyesBaseConfig.EnvName">
+            <summary>
+            If not <c>null</c> specifies a name for the environment in which the 
+            application under test is running.
+            </summary>
+        </member>
+        <member name="P:Applitools.EyesBaseConfig.BaselineEnvName">
+            <summary>
+            If not <c>null</c> determines the name of the environment of the baseline 
+            to compare with.
+            </summary>
+        </member>
+        <member name="P:Applitools.EyesBaseConfig.Batch">
+            <summary>
+            Get or sets the batch in which context future tests will run or <c>null</c>
+            if tests are to run standalone.
+            </summary>
+        </member>
+        <member name="P:Applitools.EyesBaseConfig.SaveDiffs">
+            <summary>
+            Automatically save differences as a baseline.
+            </summary>
+        </member>
+        <member name="P:Applitools.EyesBaseConfig.FailureReports">
+            <summary>
+            Specifies how detected mismatches are reported.
+            </summary>
+        </member>
+        <member name="P:Applitools.EyesBaseConfig.IgnoreCaret">
+            <summary>
+            Gets or sets whether or not to ignore a blinking caret.
+            </summary>
+        </member>
+        <member name="P:Applitools.EyesBaseConfig.DefaultMatchSettings">
+            <summary>
+            Match settings to be used for the session.
+            </summary>
+        </member>
+        <member name="P:Applitools.EyesBaseConfig.MatchLevel">
+            <summary>
+            The test-wide match level to use when application screenshots with expected output.
+            </summary>
+        </member>
+        <member name="T:Applitools.FailureReports">
+            <summary>
+            Determines how detected failures are reported.
+            </summary>
+        </member>
+        <member name="F:Applitools.FailureReports.Immediate">
+            <summary>
+            Failures are reported immediately when they are detected.
+            </summary>
+        </member>
+        <member name="F:Applitools.FailureReports.OnClose">
+            <summary>
+            Failures are reported when tests are completed (i.e., when
+            <c>Eyes.close()</c> is called).
+            </summary>
+        </member>
+        <member name="T:Applitools.InRegionBase">
+            <summary>
+            An <see cref="T:Applitools.InRegionBase"/> API.
+            </summary>
+        </member>
+        <member name="M:Applitools.InRegionBase.#ctor(System.String,System.Drawing.Rectangle,Applitools.CreateImageHandler,Applitools.GetTextHandler)">
+            <summary>
+            Creates a new <see cref="T:Applitools.InRegionBase"/> instance.
+            </summary>
+            <param name="id">Id of the region's image</param>
+            <param name="bounds">The bounds of the region within the application's window</param>
+            <param name="createImage">Creates a window image and returns its id.</param>
+            <param name="getText">Returns the text located in an image region</param>
+        </member>
+        <member name="P:Applitools.InRegionBase.Bounds">
+            <summary>
+            Gets the bounds of this window region.
+            </summary>
+        </member>
+        <member name="M:Applitools.InRegionBase.GetText">
+            <summary>
+            Gets the text found in this region.
+            </summary>
+        </member>
+        <member name="M:Applitools.InRegionBase.And(System.Drawing.Rectangle)">
+            <summary>
+            Add another window region.
+            </summary>
+        </member>
+        <member name="M:Applitools.InRegionBase.GetImageBounds">
+            <inheritdoc />
+        </member>
+        <member name="T:Applitools.InRegionsBase">
+            <summary>
+            An <see cref="T:Applitools.InRegionsBase"/> API.
+            </summary>
+        </member>
+        <member name="M:Applitools.InRegionsBase.#ctor(Applitools.CreateImageHandler,Applitools.GetTextHandler)">
+            <summary>
+            Creates a new <see cref="T:Applitools.InRegionsBase"/> instance.
+            </summary>
+        </member>
+        <member name="M:Applitools.InRegionsBase.And(System.Drawing.Rectangle)">
+            <summary>
+            Adds additional region to this sequence of regions.
+            </summary>
+        </member>
+        <member name="M:Applitools.InRegionsBase.GetText">
+            <summary>
+            Gets the text found in this sequence of regions.
+            </summary>
+        </member>
+        <member name="T:Applitools.InWindow">
+            <summary>
+            <see cref="T:Applitools.InWindow"/> API.
+            </summary>
+        </member>
+        <member name="M:Applitools.InWindow.#ctor(System.String,Applitools.CreateImageHandler)">
+            <summary>
+            Creates a new <see cref="T:Applitools.InWindow"/> instance tied to the input image id.
+            </summary>
+        </member>
+        <member name="P:Applitools.InWindow.Id">
+            <summary>
+            Gets this image's id
+            </summary>
+        </member>
+        <member name="M:Applitools.InWindow.GetImageBounds">
+            <summary>
+            Gets the bounds of the image to create.
+            </summary>
+        </member>
+        <member name="M:Applitools.MatchWindowTask.#ctor(Applitools.Logger,Applitools.IServerConnector,Applitools.RunningSession,System.TimeSpan,Applitools.EyesBase,Applitools.AppOutputProviderDelegate)">
+            <summary>
+            Captures a screenshot and sends it to be matched by the server.
+            </summary>
+            <param name="logger">The logger to use.</param>
+            <param name="serverConnector">The gateway to the Eyes server.</param>
+            <param name="runningSession">The running session in which we should match the window.</param>
+            <param name="retryTimeout">The time allowed to retry matching in case of a mismatch.</param>
+            <param name="eyes">The EyesBase that created this instance.</param>
+            <param name="appOutputProvider">Provides application output, given the input last application screenshot.</param>
+        </member>
+        <member name="P:Applitools.MatchWindowTask.LastScreenshotBounds">
+            <summary>
+            The bounds of the last screenshot relative to the window.
+            </summary>
+        </member>
+        <member name="P:Applitools.MatchWindowTask.Logger_">
+            <summary>
+            Message logger.
+            </summary>
+        </member>
+        <member name="M:Applitools.MatchWindowTask.MatchWindow(System.Nullable{System.Drawing.Rectangle},System.Collections.Generic.IList{Applitools.Trigger},System.String,System.Boolean,System.Boolean,Applitools.Fluent.ICheckSettingsInternal,System.String,System.String)">
+            <summary>
+            Repeatedly obtains an application snapshot and matches it with the next expected 
+            output, until a match is found or the timeout expires.
+            </summary>
+            <param name="region">The rectangle to be captured in the screenshot. Pass <c>Rectangle.Empty</c> or <c>null</c> for the entire screenshot.</param>
+            <param name="userInputs">User input preceding this match.</param>
+            <param name="tag">Optional tag to associated with the match (can be <c>null</c>.</param>
+            <param name="shouldRunOnceOnRetryTimeout">Force a single match attempt at the end of the match timeout.</param>
+            <param name="replaceLast">Whether to replace the last step, e.g. in case of a mismatch.</param>
+            <param name="checkSettingsInternal">The check settings to use.</param>
+            <param name="source">The source of image to match.</param>
+            <param name="domUrl">The URL where the DOM is.</param>
+            <returns>Returns the results of the match.</returns>
+        </member>
+        <member name="T:Applitools.FixedScaleProvider">
+            <summary>
+            A scale provider based on a fixed scale ratio.
+            </summary>
+        </member>
+        <member name="M:Applitools.FixedScaleProvider.#ctor(System.Double)">
+            <summary>
+            creates a new <see cref="T:Applitools.FixedScaleProvider" /> instance.
+            </summary>
+            <param name="scaleRatio">The scale ratio to use.</param>
+        </member>
+        <member name="T:Applitools.IScaleProvider">
+            <summary>
+            Encapsulates scaling logic.
+            </summary>
+        </member>
+        <member name="P:Applitools.IScaleProvider.ScaleRatio">
+            <summary>
+             The ratio by which an image will be scaled.
+             </summary>
+        </member>
+        <member name="T:Applitools.StitchModes">
+            <summary>
+            The type of stitching to use (e.g., when doing a full page screenshot).
+            </summary>
+        </member>
+        <member name="F:Applitools.StitchModes.Scroll">
+            <summary>
+            Standard JS scrolling.
+            </summary>
+        </member>
+        <member name="F:Applitools.StitchModes.CSS">
+            <summary>
+            CSS translation based stitching.
+            </summary>
+        </member>
+        <member name="T:Applitools.RunningSession">
+            <summary>
+            Encapsulates data for the session currently running in the agent.
+            </summary>
+        </member>
+        <member name="M:Applitools.RunningSession.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Applitools.ServerConnector">
+            <summary>
+            Provides an API for communication with the Applitools Eyes server.
+            </summary>
+        </member>
+        <member name="M:Applitools.ServerConnector.#ctor(Applitools.Logger,System.Uri)">
+            <summary>
+            Creates a new <see cref="T:Applitools.ServerConnector"/> instance.
+            </summary>
+        </member>
+        <member name="P:Applitools.ServerConnector.Timeout">
+            <summary>
+            Gets or set the HTTP request timeout of this connector.
+            </summary>
+        </member>
+        <member name="P:Applitools.ServerConnector.ApiKey">
+            <summary>
+            The API key identifying the user account.
+            </summary>
+        </member>
+        <member name="P:Applitools.ServerConnector.ServerUrl">
+            <summary>
+            Gets the Eyes server URL.
+            </summary>
+        </member>
+        <member name="P:Applitools.ServerConnector.SdkName">
+            <summary>
+            The SDK name.
+            </summary>
+        </member>
+        <member name="P:Applitools.ServerConnector.AgentId">
+            <summary>
+            The Agent ID of the SDK.
+            </summary>
+        </member>
+        <member name="P:Applitools.ServerConnector.Proxy">
+            <summary>
+            Gets or sets the proxy used to access the Eyes server or <c>null</c> to use the system 
+            proxy.
+            </summary>
+        </member>
+        <member name="P:Applitools.ServerConnector.Logger">
+            <summary>
+            Message logger.
+            </summary>
+        </member>
+        <member name="M:Applitools.ServerConnector.StartSession(Applitools.SessionStartInfo)">
+            <summary>
+            Starts a new session.
+            </summary>
+        </member>
+        <member name="M:Applitools.ServerConnector.EndSession(Applitools.RunningSession,System.Boolean,System.Boolean)">
+            <summary>
+            Ends the input running session.
+            </summary>
+        </member>
+        <member name="M:Applitools.ServerConnector.MatchWindow(Applitools.RunningSession,Applitools.MatchWindowData)">
+            <summary>
+            Matches the current window with the currently expected window.
+            </summary>
+            <param name="data"></param>
+            <param name="session"></param>
+        </member>
+        <member name="M:Applitools.ServerConnector.AddRunningSessionImage(Applitools.RunningSession,System.Byte[])">
+            <summary>
+            Adds the input image to the running session and returns its id.
+            </summary>
+        </member>
+        <member name="M:Applitools.ServerConnector.GetTextInRunningSessionImage(Applitools.RunningSession,System.String,System.Collections.Generic.IList{System.Drawing.Rectangle},System.String)">
+            <summary>
+            Gets the text of the specified language appearing in the input image region
+            </summary>
+        </member>
+        <member name="T:Applitools.SessionStartInfo">
+            <summary>
+            Encapsulates data required to start session using the Session API.
+            </summary>
+        </member>
+        <member name="M:Applitools.Tracer.FormatCall(System.String,System.Object[])">
+            <summary>
+            Gets a method call trace message formatter.
+            </summary>
+        </member>
+        <member name="M:Applitools.Tracer.FormatException(System.Exception)">
+            <summary>
+            Gets the string representation of the input exception.
+            </summary>
+        </member>
+        <member name="M:Applitools.Tracer.FormatExceptionStackTrace(System.Exception)">
+            <summary>
+            Gets the stack trace string of the input exception and all its inner exceptions.
+            </summary>
+        </member>
+    </members>
+</doc>
